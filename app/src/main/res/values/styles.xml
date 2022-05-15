@@ -6,4 +6,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+
+    <style name="CardListItemStyle">
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@color/colorListItemBackground</item>
+        <item name="cardCornerRadius">@dimen/corner_radius</item>
+        <item name="cardElevation">@dimen/elevation_list_item</item>
+        <item name="android:layout_marginBottom">@dimen/list_item_margin_bottom</item>
+    </style>
+
 </resources>

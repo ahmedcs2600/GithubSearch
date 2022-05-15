@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:parentTag="android.widget.LinearLayout"
+    android:orientation="vertical"
+    tools:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_error"
+        android:layout_above="@id/btnReload"
+        android:text="@string/unable_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/btnReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reload"
+        android:layout_centerInParent="true" />
+
+</merge>

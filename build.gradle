@@ -2,7 +2,7 @@
 
 buildscript {
     dependencies {
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.41"
     }
 }
 
@@ -21,5 +21,12 @@ ext {
     coroutines = '1.6.1'
     javaX = '1'
     pagingVersion = '3.1.1'
-    hiltVersion = '2.38.1'
+    coreKtx = '1.7.0'
+    appcompat = '1.4.1'
+    material = '1.6.0'
+    constraintlayout = '2.1.3'
+    okhttpLoggingInterceptorVersion = '4.9.0'
+    nav = '2.4.2'
+    hiltVersion = '2.41'
+    coilVersion = '1.4.0'
 }

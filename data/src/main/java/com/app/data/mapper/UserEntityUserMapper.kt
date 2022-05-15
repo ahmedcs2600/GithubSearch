@@ -7,6 +7,12 @@ import javax.inject.Inject
 
 class UserEntityUserMapper @Inject constructor(): Mapper<UserEntity, User> {
     override fun mapTo(item: UserEntity): User {
-        return User(id = item.id)
+        return User(
+            id = item.id,
+            login = item.login,
+            type = item.type,
+            avatarUrl = item.avatarUrl,
+            score = item.score,
+        )
     }
 }
