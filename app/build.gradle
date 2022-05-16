@@ -71,4 +71,10 @@ dependencies {
 
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
+    //Testing
+    testImplementation "androidx.arch.core:core-testing:$archCoreTesting"
+    testImplementation "io.mockk:mockk:$mockK"
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTesting"
 }

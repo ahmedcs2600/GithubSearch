@@ -25,7 +25,7 @@ abstract class NetworkBoundRepository<RESPONSE>(private val mNetworkErrorProvide
                 }
             }
         }.catch {
-            if(it.cause is IOException) {
+            if(it is IOException) {
                 emit(DataState.error(mNetworkErrorProvider.internetConnectionMessage()))
             } else {
                 emit(DataState.error(it.message ?: mNetworkErrorProvider.somethingWentWrong()))

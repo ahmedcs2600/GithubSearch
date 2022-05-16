@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.app.domain.models.UserDetail
@@ -26,6 +27,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetailBinding
         get() = FragmentDetailBinding::inflate
+
+    private val arg : DetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mViewModel.dispatchEvent(DetailContract.UIEvent.LoadUserDetail(arg.username))
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,7 +70,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                 when (effect) {
                     is DetailContract.UIEffect.Error -> {
                         requireContext().toast(effect.message)
+                        bi.progressBar.isVisible = false
                     }
+
                     is DetailContract.UIEffect.OpenBrowser -> {
                         effect.url?.toUri?.let { requireContext().intentActionView(it) }
                     }

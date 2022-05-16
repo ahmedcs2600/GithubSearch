@@ -12,23 +12,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val mUserDetailUsecase: UserDetailUsecase
 ) : BaseViewModel<DetailContract.UIState, DetailContract.UIEvent, DetailContract.UIEffect>() {
 
-    private val mUserName: String
-        get() {
-            val name = savedStateHandle.get<String>("username")
-            require(name != null) { "Username should not be equal to null" }
-            return name
-        }
-
     private val _uiState = MutableLiveData<DetailContract.UIState>()
     override val uiState: LiveData<DetailContract.UIState> get() = _uiState
-
-    init {
-        dispatchEvent(DetailContract.UIEvent.LoadUserDetail(mUserName))
-    }
 
     override fun dispatchEvent(event: DetailContract.UIEvent) {
         when (event) {

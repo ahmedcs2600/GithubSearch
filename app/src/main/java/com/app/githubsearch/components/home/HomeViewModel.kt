@@ -1,5 +1,6 @@
 package com.app.githubsearch.components.home
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.app.domain.interactors.SearchUserUsecase
@@ -12,10 +13,15 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val mSearchUserUsecase: SearchUserUsecase) :
     BaseViewModel<HomeContract.UIState, HomeContract.UIEvent, HomeContract.UIEffect>() {
 
-    private val _currentQuery = MutableLiveData("Jake")
+    companion object {
+        const val INITIAL_QUERY = "Jake"
+    }
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    val currentQuery = MutableLiveData(INITIAL_QUERY)
 
     override val uiState: LiveData<HomeContract.UIState> =
-        Transformations.switchMap(_currentQuery) { mSearchUserUsecase.invoke(it) }
+        Transformations.switchMap(currentQuery) { mSearchUserUsecase.invoke(it) }
             .cachedIn(viewModelScope).map { HomeContract.UIState.SearchedResult(it) }
 
     override fun dispatchEvent(event: HomeContract.UIEvent) {
@@ -41,6 +47,6 @@ class HomeViewModel @Inject constructor(private val mSearchUserUsecase: SearchUs
             setEffect(HomeContract.UIEffect.SearchedQueryEmpty)
             return
         }
-        _currentQuery.value = query
+        currentQuery.value = query
     }
 }

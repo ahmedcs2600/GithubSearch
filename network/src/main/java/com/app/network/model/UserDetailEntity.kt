@@ -2,7 +2,6 @@ package com.app.network.model
 
 import com.google.gson.annotations.SerializedName
 
-
 data class UserDetailEntity(
     @field:SerializedName("login") val login: String,
     @field:SerializedName("id") val id: Int,
