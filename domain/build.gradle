@@ -34,4 +34,6 @@ dependencies {
     implementation project(':common')
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     implementation "javax.inject:javax.inject:$javaX"
+    testImplementation "io.mockk:mockk:$mockK"
+    testImplementation "junit:junit:$junit"
 }
