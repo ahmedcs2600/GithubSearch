@@ -5,4 +5,13 @@
     <string name="query_empty_error">Please Enter Query</string>
     <string name="reload">Reload</string>
     <string name="unable_load">Unable to load data</string>
+    <string name="email_label">Email : %1$s</string>
+    <string name="location_label">Location : %1$s</string>
+    <string name="bio_label">Bio : %1$s</string>
+    <string name="followers_url_label">Followers Url :- %1$s</string>
+    <string name="following_url_label">Following Url :- %1$s</string>
+    <string name="repos_url_label">Repos Url :- %1$s</string>
+    <string name="events_url_label">Events Url :- %1$s</string>
+    <string name="details_label">Details</string>
+    <string name="open_browser">Open In Browser</string>
 </resources>

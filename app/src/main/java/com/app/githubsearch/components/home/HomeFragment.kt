@@ -3,6 +3,7 @@ package com.app.githubsearch.components.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -82,7 +83,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
 
                     is HomeContract.UIEffect.NavigateToDetails -> {
-                        // TODO
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                                effect.name
+                            )
+                        )
                     }
                     HomeContract.UIEffect.Retry -> {
                         mAdapter.retry()

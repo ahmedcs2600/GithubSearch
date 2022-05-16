@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
@@ -30,7 +31,7 @@ fun SearchView.bindOnQueryTextListener() = callbackFlow {
     }
 }
 
-fun Button.clicks() = callbackFlow {
+fun View.clicks() = callbackFlow {
     setOnClickListener {
         trySend(Unit)
     }
@@ -54,4 +55,12 @@ fun PagingDataAdapter<*, *>.bindLoadStateListener() = callbackFlow {
 
 fun Context.toast(@StringRes message : Int) {
     Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+}
+
+fun Context.toast(message : String) {
+    Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+}
+
+fun TextView.setTextVal(@StringRes resId : Int, value : String?) {
+    text = context.getString(resId, if(value.isNullOrEmpty()) "N/A" else value)
 }

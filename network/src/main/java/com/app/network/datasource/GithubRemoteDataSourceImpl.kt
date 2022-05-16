@@ -5,6 +5,7 @@ import com.app.network.GithubApiService
 import com.app.network.core.NetworkBoundRepository
 import com.app.network.core.NetworkErrorProvider
 import com.app.network.model.SearchUserResponse
+import com.app.network.model.UserDetailEntity
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import javax.inject.Inject
@@ -21,6 +22,14 @@ class GithubRemoteDataSourceImpl @Inject constructor(private val apiService: Git
         return object : NetworkBoundRepository<SearchUserResponse>(mNetworkErrorProvider) {
             override suspend fun fetchFromRemote(): Response<SearchUserResponse> {
                 return apiService.searchUsers(query, sort, page, perPage)
+            }
+        }.asFlow()
+    }
+
+    override fun userDetails(userName: String): Flow<DataState<UserDetailEntity>> {
+        return object : NetworkBoundRepository<UserDetailEntity>(mNetworkErrorProvider) {
+            override suspend fun fetchFromRemote(): Response<UserDetailEntity> {
+                return apiService.userDetails(userName)
             }
         }.asFlow()
     }
