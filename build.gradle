@@ -18,6 +18,13 @@ task clean(type: Delete) {
 }
 
 ext {
+
+    minSdkVersion = 21
+    compileSdkVersion = 32
+    targetSdkVersion = 32
+    versionCode = 1
+    versionName = "1.0"
+
     retrofitVersion = '2.9.0'
     coroutines = '1.6.1'
     javaX = '1'

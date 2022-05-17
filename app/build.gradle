@@ -7,14 +7,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
         applicationId "com.app.githubsearch"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "com.app.githubsearch.runner.HiltTestRunner"
     }
