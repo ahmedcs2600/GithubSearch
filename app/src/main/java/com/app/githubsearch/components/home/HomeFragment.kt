@@ -61,10 +61,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             bi.errorRetryButton.isVisible = it.refresh is LoadState.Error && mAdapter.itemCount <= 0
 
             if(it.refresh is LoadState.Error) {
-                (it.refresh as LoadState.Error).error.message?.let { it1 ->
+                (it.refresh as LoadState.Error).error.message?.let { error ->
                     requireContext().toast(
-                        it1
+                        error
                     )
+                    bi.errorRetryButton.setError(error)
                 }
             }
 

@@ -9,6 +9,7 @@
 
 
     <style name="CardListItemStyle">
+        <item name="android:layout_margin">@dimen/small_margin</item>
         <item name="cardPreventCornerOverlap">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="cardBackgroundColor">@color/colorListItemBackground</item>

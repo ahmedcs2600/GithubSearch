@@ -13,6 +13,7 @@
         android:padding="16dp">
 
         <ImageView
+            android:contentDescription="@string/user_image"
             android:id="@+id/image"
             android:layout_width="@dimen/list_image_size"
             android:layout_height="@dimen/list_image_size"
