@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/default_padding"
-    tools:context=".components.detail.DetailFragment">
+    android:id="@+id/detail_fragment_root"
+    tools:context=".components.details.DetailFragment">
 
     <RelativeLayout
         android:id="@+id/content_container"

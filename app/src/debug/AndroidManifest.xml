@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.githubsearch">
+
+
+    <application>
+        <activity
+            android:name="com.app.githubsearch.MainTestActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

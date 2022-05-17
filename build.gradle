@@ -35,4 +35,6 @@ ext {
     mockWebServer = '4.9.3'
     archCoreTesting = '2.1.0'
     coroutinesTesting = '1.5.0'
+    espresso = '3.4.0'
+    extJunit = '1.1.3'
 }
