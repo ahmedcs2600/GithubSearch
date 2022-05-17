@@ -69,6 +69,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav"
     implementation "androidx.navigation:navigation-ui-ktx:$nav"
 
+    implementation "com.appmattus.certificatetransparency:certificatetransparency-android:$certificateTransparency"
+
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 

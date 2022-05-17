@@ -2,8 +2,11 @@ package com.app.githubsearch.di.modules
 
 import android.content.Context
 import com.app.common.BASE_URL
+import com.app.common.CERTIFICATE_TRANSPARENCY_URL
+import com.app.githubsearch.utils.toURL
 import com.app.network.GithubApiService
 import com.app.network.core.NetworkErrorProvider
+import com.appmattus.certificatetransparency.certificateTransparencyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +17,13 @@ import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Qualifier
 import javax.inject.Singleton
+
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class CertificateTransparencyInterceptor
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,11 +33,14 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClient(
         @LoggingInterceptor loggingInterceptor: Interceptor,
-        @AuthInterceptor authInterceptor: Interceptor
+        @AuthInterceptor authInterceptor: Interceptor,
+        @CertificateTransparencyInterceptor mCertificateTransparencyInterceptor: Interceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
+            .hostnameVerifier { host, _ -> host == BASE_URL.toURL().host }
+            .addNetworkInterceptor(mCertificateTransparencyInterceptor)
             .build()
     }
 
@@ -45,6 +57,15 @@ class NetworkModule {
         }.build()
     }
 
+
+    @Provides
+    @CertificateTransparencyInterceptor
+    fun providesCertificateTransparencyInterceptor(): Interceptor {
+        return certificateTransparencyInterceptor {
+            +CERTIFICATE_TRANSPARENCY_URL
+        }
+    }
+
     @Singleton
     @Provides
     fun providesGithubApiService(retrofit: Retrofit): GithubApiService =
@@ -52,7 +73,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesNetworkErrorProvider(@ApplicationContext context: Context) = NetworkErrorProvider(context)
+    fun providesNetworkErrorProvider(@ApplicationContext context: Context) =
+        NetworkErrorProvider(context)
 
     @Provides
     @Singleton

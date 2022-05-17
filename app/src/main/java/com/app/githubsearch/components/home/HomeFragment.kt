@@ -58,7 +58,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         uiEvents().onEach { mViewModel.dispatchEvent(it) }.launchIn(lifecycleScope)
         mAdapter.bindLoadStateListener().onEach {
             bi.progressBar.isVisible = it.refresh is LoadState.Loading
-            bi.errorRetryButton.isVisible = it.refresh is LoadState.Error
+            bi.errorRetryButton.isVisible = it.refresh is LoadState.Error && mAdapter.itemCount <= 0
+
+            if(it.refresh is LoadState.Error) {
+                (it.refresh as LoadState.Error).error.message?.let { it1 ->
+                    requireContext().toast(
+                        it1
+                    )
+                }
+            }
+
         }.launchIn(lifecycleScope)
     }
 
